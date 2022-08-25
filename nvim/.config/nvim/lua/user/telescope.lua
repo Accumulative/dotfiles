@@ -12,7 +12,18 @@ telescope.setup {
     prompt_prefix = " ",
     selection_caret = " ",
     -- prefer truncate, but git worktrees weren't working with that
-    path_display = { shorten = { len = 1, exclude = { 1, -1 } } },
+    path_display = {},
+
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+    },
 
     mappings = {
       i = {
@@ -80,6 +91,9 @@ telescope.setup {
     },
   },
   pickers = {
+    find_files = {
+      hidden = true,
+    },
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
     --   picker_config_key = value,
