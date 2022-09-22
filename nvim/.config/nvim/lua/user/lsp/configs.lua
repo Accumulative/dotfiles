@@ -6,6 +6,7 @@ end
 local lspconfig = require("lspconfig")
 
 local servers = {
+  "gopls",
   "jsonls",
   "sumneko_lua",
   "tsserver",
