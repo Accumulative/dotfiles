@@ -104,10 +104,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias ag-redis='echo "apt-get update && apt-get install -y redis" | pbcopy'
-
-alias get-redis-host='k get secret redis -o json | jq -r .data.host | base64 -D | pbcopy'
-
 # My config
 #
 
@@ -200,6 +196,11 @@ function killport()
 }
 function to_csv() {
   cat $1 | jq -r '.[] | @csv' > output.csv
+}
+
+function incidents() {
+  YEAR_MONTH=$(date +%Y-%m)
+  curl https://status.cloud.google.com/incidents.json | jq -r "[ .[] | select(.begin | startswith(\"$YEAR_MONTH\")) | { title: .external_desc, begin: .begin} ]"
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

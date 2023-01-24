@@ -21,8 +21,8 @@ vim.g.maplocalleader = " "
 -- Normal --
 -- Better window navigation
 -- keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", ":cnext<CR>", opts)
-keymap("n", "<C-k>", ":cprev<CR>", opts)
+keymap("n", "S-Right", ":cnext<CR>", opts)
+keymap("n", "S-Left", ":cprev<CR>", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows

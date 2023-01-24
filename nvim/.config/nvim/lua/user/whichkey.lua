@@ -94,7 +94,12 @@ local mappings = {
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
+  ["q"] = {
+    name = "Quickfix",
+    j = { "<cmd>cnext<CR>", "Next match" },
+    k = { "<cmd>cprev<CR>", "Previous match" },
+    o = { "<cmd>copen<CR>", "Open list" },
+  },
   ["c"] = {
     name = "Misc",
     c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
@@ -174,7 +179,8 @@ local mappings = {
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
+    p = { "<cmd>lua require 'user/commands'.peek_definition()<cr>", "Peek definition" },
+    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
     b = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show diagnostic" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },

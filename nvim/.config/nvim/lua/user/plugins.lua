@@ -59,9 +59,23 @@ return packer.startup(function(use)
   use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
   use "folke/which-key.nvim"
   use "junegunn/goyo.vim"
+  use 'christoomey/vim-tmux-navigator'
+
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
+
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use "ellisonleao/gruvbox.nvim"
+  use "luisiacc/gruvbox-baby"
+  use 'navarasu/onedark.nvim'
+  use "EdenEast/nightfox.nvim"
+  use "rebelot/kanagawa.nvim"
+  use 'tomasiser/vim-code-dark'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -77,6 +91,7 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
+  use 'j-hui/fidget.nvim'
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
@@ -110,12 +125,6 @@ return packer.startup(function(use)
   use "unblevable/quick-scope"
   use "ray-x/lsp_signature.nvim"
   use "rcarriga/nvim-notify"
-  use "ellisonleao/gruvbox.nvim"
-  use "luisiacc/gruvbox-baby"
-  use 'navarasu/onedark.nvim'
-  use "EdenEast/nightfox.nvim"
-  use "rebelot/kanagawa.nvim"
-  use 'tomasiser/vim-code-dark'
   use "ThePrimeagen/refactoring.nvim"
   use 'mfussenegger/nvim-dap'
   use 'theHamsta/nvim-dap-virtual-text'
