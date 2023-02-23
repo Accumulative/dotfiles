@@ -84,7 +84,6 @@ return {
       autocmd = true,
     },
   },
-  "theprimeagen/git-worktree.nvim",
   "simrat39/symbols-outline.nvim",
   "unblevable/quick-scope",
   "ThePrimeagen/refactoring.nvim",

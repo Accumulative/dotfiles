@@ -34,6 +34,7 @@ return {
         }), -- null_ls.builtins.formatting.stylua,
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.pylint.with({
+          extra_args = { "--disable", "c0114,c0115,c0116" },
           diagnostics_postprocess = function(diagnostic)
             diagnostic.code = diagnostic.message_id
           end,

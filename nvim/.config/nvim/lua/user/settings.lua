@@ -48,6 +48,23 @@ M.treesitter_ensure_installed = {
   "sql",
 }
 
+M.lsp_servers = {
+  "gopls",
+  "jsonls",
+  "tsserver",
+  "lua_ls",
+  "cssls",
+  "dockerls",
+  "html",
+  "pyright",
+  "solc",
+  "tailwindcss",
+  "yamlls",
+  "dartls",
+  "rust_analyzer",
+  "terraformls",
+}
+
 M.dashboard_ascii = {
   [[  ██ ▄█▀ ██░░  ████  ██▀███   ▄▄▄       ███▄   █ ]],
   [[  ██▄█▒ ▓██░▒▓█   ▀ ██ ▒██  ▒████▄     ██ ▀█   █ ]],
