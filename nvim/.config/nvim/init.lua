@@ -1,30 +1,26 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.treesitter"
-require "user.autopairs"
-require "user.comment"
-require "user.gitsigns"
-require "user.nvim-tree"
-require "user.bufferline"
-require "user.lualine"
-require "user.toggleterm"
-require "user.project"
-require "user.impatient"
-require "user.indentline"
-require "user.alpha"
-require "user.whichkey"
-require "user.autocommands"
-require "user.lsp_signature"
-require "user.notify"
-require "user.dap"
-require "user.context"
-require "user.zenmode"
-require "user.test"
-require "user.project-config"
-require "user.snippets"
-require "user.fidget"
+--Remap space as leader key
+vim.api.nvim_set_keymap("", "<Space>", "<Nop>", {})
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("plugins")
+
+require("user.options")
+require("user.keymaps")
+require("user.lsp")
+require("user.autocommands")
+require("user.telescope")
+require("user.toggleterm")

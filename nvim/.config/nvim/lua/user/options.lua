@@ -33,18 +33,18 @@ local options = {
   scrolloff = 8, -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17", -- the font used in graphical neovim applications
+  directory = os.getenv("HOME") .. "/.config/nvim/tmp/swap",
+  undodir = os.getenv("HOME") .. "/.config/nvim/tmp/undo",
+  backupdir = os.getenv("HOME") .. "/.config/nvim/tmp/backup",
 }
 
-vim.opt.directory = os.getenv("HOME") .. '/.config/nvim/tmp/swap'
-vim.opt.undodir = os.getenv("HOME") .. '/.config/nvim/tmp/undo'
-vim.opt.backupdir = os.getenv("HOME") .. '/.config/nvim/tmp/backup'
-vim.opt.shortmess:append "c"
-vim.opt.shortmess:append "w" -- stop command line reporting file saved
+vim.opt.shortmess:append("c")
+vim.opt.shortmess:append("w") -- stop command line reporting file saved
 
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd("set whichwrap+=<,>,[,],h,l")
 -- vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

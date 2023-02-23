@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-pushd $DOTFILES
-export STOW_FOLDERS="nvim,zsh,tmux"
+export STOW_FOLDERS="nvim,zsh,tmux,alacritty"
 
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
@@ -9,4 +8,3 @@ do
     stow -D $folder
     stow $folder
 done
-popd

@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
-pushd $DOTFILES
-export STOW_FOLDERS="zsh,tmuxinator"
+export STOW_FOLDERS="zsh,tmuxinator,screen"
 
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
@@ -9,4 +8,3 @@ do
     stow -D --target=../../ $folder
     stow --no-folding --target=../../ $folder
 done
-popd

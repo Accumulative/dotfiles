@@ -4,7 +4,9 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+
 exec_always /home/kieran/.screenlayout/resolutions.sh 
+focus_follows_mouse no
 
 set $base00 #101218
 set $base01 #1f222d
@@ -60,10 +62,10 @@ bindsym $mod+d exec rofi -show
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -72,10 +74,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -84,7 +86,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -166,6 +168,7 @@ for_window [workspace=$workspace5] fullscreen enable
 assign [title="OpenGL"] $workspace6
 assign [class="(?)Steam"] $workspace6
 for_window [class="Spotify"] move to workspace $workspace3, focus
+for_window [class="peek"] floating enable
 
 # i3 gaps rounded config
 gaps inner 10
@@ -182,55 +185,55 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-  bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 # Widow Colours
 #                         border  background text    indicator
-  client.focused          $base01 $base01    $base07 $base0F
-  client.focused_inactive $base02 $base02    $base03 $base0F
-  client.unfocused        $base02 $base02    $base03 $base0F
-  client.urgent           $base02 $base08    $base00 $base0F
+client.focused          $base01 $base01    $base07 $base0F
+client.focused_inactive $base02 $base02    $base03 $base0F
+client.unfocused        $base02 $base02    $base03 $base0F
+client.urgent           $base02 $base08    $base00 $base0F
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
- #        status_command i3status
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-  font pango: Ubuntu Mono, FontAwesome 12
-  tray_output primary 
-        position top
-        strip_workspace_numbers yes
-        #bindsym button4 nop
-        #bindsym button5 nop
-        colors {
-              separator $base03
-              background $base01
-              statusline $base05
+#        status_command i3status
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    font pango: Ubuntu Mono, FontAwesome 12
+    tray_output primary 
+    position top
+    strip_workspace_numbers yes
+#bindsym button4 nop
+#bindsym button5 nop
+    colors {
+      separator $base03
+        background $base01
+        statusline $base05
 #                        border  background text
-              focused_workspace  $base01 $base01    $base07
-              active_workspace   $base01 $base02    $base03
-              inactive_workspace $base01 $base01    $base03
-              urgent_workspace   $base01 $base01    $base08
+        focused_workspace  $base01 $base01    $base07
+        active_workspace   $base01 $base02    $base03
+        inactive_workspace $base01 $base01    $base03
+        urgent_workspace   $base01 $base01    $base08
     }
 }
 
@@ -249,7 +252,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym Print --release exec gnome-screenshot -a
 
 bindsym $mod+shift+x exec i3lock
-exec_always feh --bg-scale /home/kieran/Pictures/B0P0Qdx.jpeg
+exec_always feh --bg-scale /home/kieran/Pictures/Wallpapers/Tokyonight.jpg --bg-scale /home/kieran/Pictures/Wallpapers/fuji-vertical.jpg
 exec fcitx
-# exec_always pkill compton; compton -f --config /home/kieran/.config/compton.conf
+exec_always pkill compton; compton -f --config /home/kieran/.config/compton.conf
 exec start-pulseaudio-x11
