@@ -1,3 +1,4 @@
+local settings = require("user.settings")
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -122,7 +123,7 @@ return {
         opts = {}, -- merged with defaults from documentation
       },
       signature = {
-        enabled = true,
+        enabled = settings.signature_provider == "noice",
         auto_open = {
           enabled = true,
           trigger = true, -- Automatically show signature help when typing a trigger character from the LSP

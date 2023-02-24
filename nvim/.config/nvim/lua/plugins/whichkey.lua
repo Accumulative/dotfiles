@@ -196,7 +196,10 @@ local mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
   t = {
-    name = "Terminal",
+    name = "Terminal/Test",
+    a = { "<cmd>:TestNearest<cr>", "Test Nearest" },
+    b = { "<cmd>:TestLast<cr>", "Test Last" },
+    c = { "<cmd>:TestFile<cr>", "Test File" },
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },

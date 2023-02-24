@@ -124,6 +124,9 @@ alias gl="git log --pretty=oneline"
 alias his="history 1000 | grep"
 alias barrier="flatpak run com.github.debauchee.barrier"
 
+# kubenetes alias
+alias kclear="k get pods | grep -E 'Error|Completed' | cut -d ' ' -f 1 | xargs kubectl delete pod"
+
 #
 # Correction
 
@@ -210,3 +213,11 @@ if [ -f ~/.zshrc.local ]; then
 else
     print "404: ~/.zshrc.local not found."
 fi
+
+function dnamespace() {
+  NAMESPACE=your-rogue-namespace
+  kubectl proxy &
+  kubectl get namespace $NAMESPACE -o json |jq '.spec = {"finalizers":[]}' >temp.json
+  curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$NAMESPACE/finalize
+}
+

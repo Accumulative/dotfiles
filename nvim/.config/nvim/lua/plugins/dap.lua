@@ -28,6 +28,7 @@ return {
     end
 
     require("plugins.dap.python").setup()
+    require("plugins.dap.lua").setup()
 
     local wk = require("which-key")
     wk.register({

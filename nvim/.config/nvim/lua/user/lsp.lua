@@ -1,3 +1,4 @@
+local settings = require("user.settings")
 local signs = {
   { name = "DiagnosticSignError", text = "" },
   { name = "DiagnosticSignWarn", text = "" },
@@ -24,10 +25,41 @@ vim.api.nvim_create_autocmd(string.format("BufWritePre %s", format_filetypes), {
   nested = true,
 })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
-})
+vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+  config = config or {}
+  config.border = "rounded"
+  config.focusable = settings.focusable_popups
+  config.focus_id = ctx.method
+  if not (result and result.contents) then
+    return
+  end
+  local markdown_lines = vim.lsp.util.convert_input_to_markdown_lines(result.contents)
+  markdown_lines = vim.lsp.util.trim_empty_lines(markdown_lines)
+  if vim.tbl_isempty(markdown_lines) then
+    return
+  end
+  return vim.lsp.util.open_floating_preview(markdown_lines, "markdown", config)
+end
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "rounded",
+  focusable = settings.focusable_popups,
 })
+
+if settings.diagnostics_on_hover == true then
+  vim.api.nvim_create_autocmd("CursorHold *", {
+    callback = function()
+      vim.diagnostic.open_float({ focusable = settings.focusable_popups })
+    end,
+    nested = true,
+  })
+end
+
+if settings.signature_on_hover == true then
+  vim.api.nvim_create_autocmd("CursorHold *", {
+    callback = function()
+      vim.lsp.buf.hover()
+    end,
+    nested = true,
+  })
+end

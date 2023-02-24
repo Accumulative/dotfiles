@@ -45,9 +45,9 @@ return {
     "tomasiser/vim-code-dark",
     config = function()
       vim.cmd([[
-        set background=dark
-        colorscheme codedark
-      ]])
+	set background=dark
+	colorscheme codedark
+	]])
     end,
   },
   {
@@ -58,18 +58,23 @@ return {
   "tamago324/nlsp-settings.nvim", -- language server settings defined in json for
   "JoosepAlviste/nvim-ts-context-commentstring", -- Git
   "tpope/vim-fugitive", -- git utils
-  "tpope/vim-dispatch", -- dispatch commands
+  {
+    "tpope/vim-dispatch",
+    config = function()
+      vim.g["dispatch_tmux_height"] = "50% -h"
+    end,
+  },
   "tpope/vim-surround", -- surround {}
   "tpope/vim-rhubarb", -- :GBrowse
   "tpope/vim-repeat", -- make . stronger
   "tpope/vim-abolish", -- better searching
-  "tpope/vim-projectionist", -- alternate files
   "godlygeek/tabular", -- helps align stuff
   "mbbill/undotree",
   {
     "vim-test/vim-test",
     config = function()
       vim.g["test#strategy"] = "dispatch"
+      vim.g["test#echo_command"] = 0
     end,
   },
   {

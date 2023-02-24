@@ -1,3 +1,4 @@
+local settings = require("user.settings")
 local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
@@ -18,6 +19,19 @@ return {
   config = function()
     local cmp = require("cmp")
     local lspkind = require("lspkind")
+
+    local sources = {
+      { name = "nvim_lsp" },
+      { name = "buffer", keyword_length = 5 },
+      { name = "luasnip" },
+      { name = "calc" },
+      { name = "path" },
+      { name = "rg", keyword_length = 5 },
+    }
+
+    if settings.signature_provider == "cmp" then
+      table.insert(sources, { name = "nvim_lsp_signature_help" })
+    end
 
     cmp.setup({
       formatting = {
@@ -85,15 +99,7 @@ return {
           "s",
         }),
       },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "nvim_lsp_signature_help" },
-        { name = "buffer", keyword_length = 5 },
-        { name = "luasnip" },
-        { name = "calc" },
-        { name = "path" },
-        { name = "rg", keyword_length = 5 },
-      },
+      sources = sources,
     })
 
     -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

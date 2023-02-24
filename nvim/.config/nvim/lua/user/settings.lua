@@ -78,5 +78,9 @@ M.dashboard_ascii = {
 }
 
 M.footer_text = "Kieran Burke"
+M.diagnostics_on_hover = false
+M.signature_on_hover = false
+M.focusable_popups = false
+M.signature_provider = "cmp" -- cmp/noice
 
 return M

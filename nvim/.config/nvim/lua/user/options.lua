@@ -38,8 +38,12 @@ local options = {
   backupdir = os.getenv("HOME") .. "/.config/nvim/tmp/backup",
 }
 
+vim.opt.directory = os.getenv("HOME") .. "/.config/nvim/tmp/swap"
+vim.opt.undodir = os.getenv("HOME") .. "/.config/nvim/tmp/undo"
+vim.opt.backupdir = os.getenv("HOME") .. "/.config/nvim/tmp/backup"
 vim.opt.shortmess:append("c")
 vim.opt.shortmess:append("w") -- stop command line reporting file saved
+vim.opt.shortmess:append("a") -- all?
 
 for k, v in pairs(options) do
   vim.opt[k] = v
