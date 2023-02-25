@@ -60,7 +60,6 @@ M.lsp_servers = {
   "solc",
   "tailwindcss",
   "yamlls",
-  "dartls",
   "rust_analyzer",
   "terraformls",
 }
@@ -82,5 +81,13 @@ M.diagnostics_on_hover = false
 M.signature_on_hover = false
 M.focusable_popups = false
 M.signature_provider = "cmp" -- cmp/noice
+M.diagnostic_display = {
+  signs = true,
+  underline = false,
+  update_in_insert = false,
+  virtual_text = {
+    spacing = 2,
+  },
+}
 
 return M

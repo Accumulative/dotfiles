@@ -93,4 +93,13 @@ return {
   "unblevable/quick-scope",
   "ThePrimeagen/refactoring.nvim",
   --{ "https://github.com/ray-x/lsp_signature.nvim", config = true }
+  {
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      })
+    end,
+  },
 }

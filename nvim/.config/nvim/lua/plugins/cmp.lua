@@ -1,123 +1,51 @@
 local settings = require("user.settings")
-local check_backspace = function()
-  local col = vim.fn.col(".") - 1
-  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
 return {
-  "hrsh7th/nvim-cmp",
+  "VonHeikemen/lsp-zero.nvim",
+  branch = "v1.x",
   dependencies = {
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-calc",
-    "lukas-reineke/cmp-rg",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
+    -- LSP Support
+    { "neovim/nvim-lspconfig" }, -- Required
+    { "williamboman/mason.nvim" }, -- Optional
+    { "williamboman/mason-lspconfig.nvim" }, -- Optional
+
+    -- Autocompletion
+    { "hrsh7th/nvim-cmp" }, -- Required
+    { "hrsh7th/cmp-nvim-lsp" }, -- Required
+    { "hrsh7th/cmp-buffer" }, -- Optional
+    { "hrsh7th/cmp-path" }, -- Optional
+    { "saadparwaiz1/cmp_luasnip" }, -- Optional
+    { "hrsh7th/cmp-nvim-lua" }, -- Optional
+
+    --[[ -- Signature ]]
+    { "https://github.com/ray-x/lsp_signature.nvim" },
+
+    -- Snippets { 'L3MON4D3/LuaSnip' }, -- Required
+    { "rafamadriz/friendly-snippets" }, -- Optional
   },
   config = function()
-    local cmp = require("cmp")
-    local lspkind = require("lspkind")
+    local lsp = require("lsp-zero")
+    lsp.preset({
+      name = "recommended",
+      set_lsp_keymaps = { preserve_mappings = false },
+    })
 
-    local sources = {
-      { name = "nvim_lsp" },
-      { name = "buffer", keyword_length = 5 },
-      { name = "luasnip" },
-      { name = "calc" },
-      { name = "path" },
-      { name = "rg", keyword_length = 5 },
+    local lsp_signature_config = {
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "rounded",
+      },
     }
 
     if settings.signature_provider == "cmp" then
-      table.insert(sources, { name = "nvim_lsp_signature_help" })
+      -- virtual text signature
+      require("lsp_signature").setup(lsp_signature_config)
     end
 
-    cmp.setup({
-      formatting = {
-        format = lspkind.cmp_format({
-          with_text = false,
-          maxwidth = 50,
-          mode = "symbol",
-          menu = {
-            buffer = "BUF",
-            rg = "RG",
-            nvim_lsp = "LSP",
-            path = "PATH",
-            luasnip = "SNIP",
-            calc = "CALC",
-          },
-        }),
-      },
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      },
-      mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ["<C-e>"] = cmp.mapping({
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
-        }),
-        -- Accept currently selected item. If none selected, `select` first item.
-        -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif check_backspace() then
-            fallback()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-      },
-      sources = sources,
-    })
+    lsp.ensure_installed(settings.lsp_servers)
 
-    -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline("/", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = "buffer" },
-      },
-    })
+    -- (Optional) Configure lua language server for neovim
+    lsp.nvim_workspace()
 
-    -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        { name = "cmdline" },
-      }),
-    })
+    lsp.setup()
   end,
 }

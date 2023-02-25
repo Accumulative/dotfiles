@@ -220,6 +220,11 @@ local mappings = {
     o = { '<cmd>lua require"dap".step_out()<CR>', "Step out" },
     p = { '<cmd>lua require"dap".toggle_breakpoint()<CR>', "Breakpoint" },
   },
+  v = {
+    name = "Vim",
+    e = { ":tabedit $MYVIMRC<CR>", "Edit" },
+    r = { ":source $MYVIMRC<CR>", "Reload" },
+  },
 }
 
 local v_mappings = {
