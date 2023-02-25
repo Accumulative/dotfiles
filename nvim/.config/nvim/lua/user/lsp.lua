@@ -38,7 +38,12 @@ end
 
 if settings.diagnostic_display.underline == false then
   vim.cmd([[highlight DiagnosticUnderlineError gui=None]])
+  vim.cmd([[highlight DiagnosticUnderlineInfo gui=None]])
+  vim.cmd([[highlight DiagnosticUnderlineOk gui=None]])
+  vim.cmd([[highlight DiagnosticUnderlineHint gui=None]])
+  vim.cmd([[highlight DiagnosticUnderlineWarn gui=None]])
 end
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, settings.diagnostic_display)
 
 if settings.signature_on_hover == true then
