@@ -21,7 +21,7 @@ return {
             "json",
             "jsonc",
             "yaml",
-            "markdown",
+            --[[ "markdown", ]]
             "graphql",
             "handlebars",
           },
@@ -31,7 +31,8 @@ return {
         }),
         null_ls.builtins.formatting.trim_whitespace.with({
           filetypes = { "plantuml" },
-        }), -- null_ls.builtins.formatting.stylua,
+        }),
+        null_ls.builtins.formatting.stylua,
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.pylint.with({
           extra_args = { "--disable", "c0114,c0115,c0116" },
@@ -43,13 +44,13 @@ return {
         null_ls.builtins.formatting.black,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.formatting.eslint_d,
-        -- null_ls.builtins.diagnostics.markdownlint,
-        -- null_ls.builtins.formatting.shfmt,
-        -- null_ls.builtins.diagnostics.shellcheck,
-        -- null_ls.builtins.code_actions.shellcheck,
-        -- null_ls.builtins.diagnostics.markdownlint,
-        null_ls.builtins.code_actions.refactoring, -- null_ls.builtins.formatting.stylua,
-        null_ls.builtins.code_actions.gitsigns, -- diagnostics.flake8
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.formatting.shfmt,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.code_actions.shellcheck,
+        null_ls.builtins.diagnostics.markdownlint,
+        null_ls.builtins.code_actions.gitsigns,
+        null_ls.builtins.code_actions.refactoring,
       },
     })
   end,

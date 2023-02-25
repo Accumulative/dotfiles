@@ -15,12 +15,15 @@ M.mason_tool_installer_ensure_installed = {
   "prettier",
   "stylua",
   "shfmt",
+  "isort",
   -- Linter
   "eslint_d",
   "prettierd",
   "shellcheck",
   "tflint",
   "yamllint",
+  "pylint",
+  "markdownlint",
   -- DAP
   "debugpy",
 }
