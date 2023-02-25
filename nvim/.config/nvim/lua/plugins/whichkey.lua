@@ -98,6 +98,7 @@ local mappings = {
   ["c"] = {
     name = "Misc",
     c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    o = { "<cmd>silent %bd<bar>e#<bar>bd#<CR>", "Close other Buffers" },
     l = { "<cmd>lua require 'telescope.builtin'.grep_string()<cr>", "Grep string" },
     f = { "<cmd>lua require 'user/telescope'.search_dotfiles()<cr>", "Dotfiles" },
     s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Search symbols" },
