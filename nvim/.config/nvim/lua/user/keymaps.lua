@@ -82,3 +82,4 @@ keymap("c", "%%", "<C-R>=fnameescape(expand('%:h')).'/'<CR>", opts)
 keymap("n", "gR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts) -- also set to F2 in lsp-zero
 keymap("n", "<C-x>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts) -- also set to F4 in lsp-zero
 keymap("n", "g?", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+keymap("n", "g:", "<cmd>vsplit<CR><cmd>lua vim.lsp.buf.definition()<CR>", opts)

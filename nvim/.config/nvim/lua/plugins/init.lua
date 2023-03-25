@@ -11,8 +11,36 @@ return {
   "christoomey/vim-tmux-navigator",
   {
     "iamcco/markdown-preview.nvim",
-    build = function()
-      vim.fn["mkdp#util#install"]()
+    ft = "markdown",
+    build = ":call mkdp#util#install()",
+    lazy = true,
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          auto_refresh = false,
+          keymap = {
+            accept = "<CR>",
+            jump_prev = "[[",
+            jump_next = "]]",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
+        },
+        suggestion = {
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-J>",
+            prev = "<M-[>",
+            next = "<M-]>",
+            dismiss = "<C-]>",
+          },
+        },
+      })
     end,
   },
   -- Colorschemes
@@ -92,14 +120,7 @@ return {
   "simrat39/symbols-outline.nvim",
   "unblevable/quick-scope",
   "ThePrimeagen/refactoring.nvim",
-  --{ "https://github.com/ray-x/lsp_signature.nvim", config = true }
-  {
-    "rmagatti/auto-session",
-    config = function()
-      require("auto-session").setup({
-        log_level = "error",
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/", "~/.dotfiles" },
-      })
-    end,
-  },
+  "tpope/vim-dadbod",
+  "kristijanhusak/vim-dadbod-ui",
+  "puremourning/vimspector",
 }
