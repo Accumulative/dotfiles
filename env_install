@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-export STOW_FOLDERS="nvim,zsh,tmux,alacritty"
+export STOW_FOLDERS="nvim,zsh,tmux,alacritty,rofi"
 
 for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
 do
