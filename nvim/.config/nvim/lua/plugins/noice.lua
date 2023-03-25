@@ -95,6 +95,7 @@ return {
       -- Benefit of using Noice for this is the routing and consistent history view
       enabled = true,
       view = "notify",
+      background_color = "#000000",
     },
     lsp = {
       progress = {

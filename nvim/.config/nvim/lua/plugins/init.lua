@@ -73,10 +73,16 @@ return {
     "tomasiser/vim-code-dark",
     config = function()
       vim.cmd([[
-	set background=dark
-	colorscheme codedark
-	]])
+        set background=dark
+        colorscheme codedark
+      ]])
     end,
+  },
+  {
+    "xiyaowong/transparent.nvim",
+    config = {
+      enable = false,
+    },
   },
   {
     "stevearc/dressing.nvim",
