@@ -221,3 +221,9 @@ function dnamespace() {
   curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$NAMESPACE/finalize
 }
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/kieran/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kieran/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/kieran/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kieran/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
