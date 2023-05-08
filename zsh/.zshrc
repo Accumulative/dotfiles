@@ -123,6 +123,7 @@ alias oldvim="vim"
 alias gl="git log --pretty=oneline"
 alias his="history 1000 | grep"
 alias barrier="flatpak run com.github.debauchee.barrier"
+alias pacman-dump="pacman -Qqen > ~/.dotfiles/pkglist.txt"
 
 # kubenetes alias
 alias kclear="k get pods | grep -E 'Error|Completed' | cut -d ' ' -f 1 | xargs kubectl delete pod"

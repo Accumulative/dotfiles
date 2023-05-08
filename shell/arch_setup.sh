@@ -35,5 +35,6 @@ rm -rf ./google-cloud-sdk
 
 # mullvad vpn
 pikaur -S mullvad-vpn
+pikaur -S i3lock-color
 
 sudo systemctl enable --now docker
