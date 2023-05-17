@@ -54,18 +54,26 @@ awful.keyboard.append_global_keybindings({
         function() awful.screen.focus_relative(-1) end,
         { description = "focus the previous screen", group = "screen" }
     ),
+    -- Prompt
     awful.key(
-        { modkey, "Control", "Shift" },
-        "k",
-        function(c) c:move_to_screen(c.screen.index - 1) end,
-        { description = "move to screen left", group = "client" }
+        { modkey },
+        "r",
+        function() awful.screen.focused().mypromptbox:run() end,
+        { description = "run prompt", group = "launcher" }
     ),
 
     awful.key(
-        { modkey, "Control", "Shift" },
-        "j",
-        function(c) c:move_to_screen(c.screen.index + 1) end,
-        { description = "move to screen right", group = "client" }
+        { modkey },
+        "x",
+        function()
+            awful.prompt.run({
+                prompt = "Run Lua code: ",
+                textbox = awful.screen.focused().mypromptbox.widget,
+                exe_callback = awful.util.eval,
+                history_path = awful.util.get_cache_dir() .. "/history_eval",
+            })
+        end,
+        { description = "lua execute prompt", group = "awesome" }
     ),
 })
 
@@ -240,6 +248,20 @@ client.connect_signal("request::default_keybindings", function()
             "t",
             function(c) c.ontop = not c.ontop end,
             { description = "toggle keep on top", group = "client" }
+        ),
+
+        awful.key(
+            { modkey, "Control", "Shift" },
+            "k",
+            function(c) c:move_to_screen(c.screen.index - 1) end,
+            { description = "move to screen left", group = "client" }
+        ),
+
+        awful.key(
+            { modkey, "Control", "Shift" },
+            "j",
+            function(c) c:move_to_screen(c.screen.index + 1) end,
+            { description = "move to screen right", group = "client" }
         ),
     })
 end)

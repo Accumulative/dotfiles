@@ -65,11 +65,11 @@ return {
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
-  },                                             -- LSP
+  }, -- LSP
   "rafamadriz/friendly-snippets",
-  "tamago324/nlsp-settings.nvim",                -- language server settings defined in json for
+  "tamago324/nlsp-settings.nvim", -- language server settings defined in json for
   "JoosepAlviste/nvim-ts-context-commentstring", -- Git
-  "tpope/vim-fugitive",                          -- git utils
+  "tpope/vim-fugitive", -- git utils
   {
     "tpope/vim-dispatch",
     config = function()
@@ -77,10 +77,10 @@ return {
     end,
   },
   "tpope/vim-surround", -- surround {}
-  "tpope/vim-rhubarb",  -- :GBrowse
-  "tpope/vim-repeat",   -- make . stronger
-  "tpope/vim-abolish",  -- better searching
-  "godlygeek/tabular",  -- helps align stuff
+  "tpope/vim-rhubarb", -- :GBrowse
+  "tpope/vim-repeat", -- make . stronger
+  "tpope/vim-abolish", -- better searching
+  "godlygeek/tabular", -- helps align stuff
   "mbbill/undotree",
   {
     "vim-test/vim-test",
@@ -106,5 +106,5 @@ return {
   "ThePrimeagen/refactoring.nvim",
   "tpope/vim-dadbod",
   "kristijanhusak/vim-dadbod-ui",
-  "puremourning/vimspector",
+  --[[ "puremourning/vimspector", ]]
 }

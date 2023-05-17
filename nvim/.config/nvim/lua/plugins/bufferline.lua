@@ -79,7 +79,7 @@ return {
       fill = {
         fg = {
           attribute = "fg",
-          highlight = "#ff0000",
+          highlight = "TabLine",
         },
         bg = {
           attribute = "bg",
@@ -111,7 +111,6 @@ return {
           highlight = "TabLine",
         },
       },
-
       close_button = {
         fg = {
           attribute = "fg",

@@ -16,7 +16,7 @@ mkfs.ext4 /dev/sda2
 # pacman
 pacman -Syy
 pacman -S reflector
-reflector -c "US" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+reflector -c "Australia" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 
 # mount
 mount /dev/nvme0n1p2 /mnt
@@ -25,7 +25,7 @@ mount /dev/nvme0n1p2 /mnt
 pacstrap /mnt base base-devel linux linux-firmware vim git nano
 
 # fstab
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >>/mnt/etc/fstab
 
 # chroot
 arch-chroot /mnt
@@ -37,17 +37,17 @@ hwclock --systohc
 # locale
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-echo LANG=en_US.UTF-8 > /etc/locale.conf
+echo LANG=en_US.UTF-8 >/etc/locale.conf
 
 # hostname
-echo arch > /etc/hostname
+echo arch >/etc/hostname
 
 # hosts
 echo "
 127.0.0.1	localhost
 ::1		localhost
 127.0.1.1	myarch
-" > /etc/hosts
+" >/etc/hosts
 
 # root password
 passwd
@@ -84,4 +84,4 @@ git clone https://aur.archlinux.org/awesome-git.git
 cd awesome-git
 makepkg -si
 
-pacman -S xorg xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset 
+pacman -S xorg xorg-xinit xorg-xrandr xorg-xsetroot xorg-xset
