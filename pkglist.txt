@@ -21,6 +21,8 @@ gimp
 git
 gnome-keyring
 grub
+intel-media-driver
+intel-ucode
 keepass
 keepassxc
 lib32-mesa
@@ -30,10 +32,12 @@ linux
 linux-firmware
 linux-headers
 lxappearance-gtk3
+lxsession
 maim
 mesa
 mesa-utils
 mpd
+mpv
 mutt
 nano
 neofetch
