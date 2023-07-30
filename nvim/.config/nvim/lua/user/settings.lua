@@ -30,7 +30,6 @@ M.mason_tool_installer_ensure_installed = {
 
 M.treesitter_ensure_installed = {
   "bash",
-  "help",
   "html",
   "javascript",
   "json",
@@ -55,6 +54,7 @@ M.lsp_servers = {
   "gopls",
   "jsonls",
   "tsserver",
+  "clangd",
   "lua_ls",
   "cssls",
   "dockerls",

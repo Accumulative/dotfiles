@@ -1,127 +1,91 @@
 return {
   "kyazdani42/nvim-tree.lua",
   dependencies = { "nvim-telescope/telescope.nvim" },
-  config = function()
-    local nvim_tree = require("nvim-tree")
-    local nvim_tree_config = require("nvim-tree.config")
-
-    -- Replaces auto_close
-    local tree_cb = nvim_tree_config.nvim_tree_callback
-
-    local config = {
-      -- needs to be disabled for GBrowse to work
-      -- alternative: could create own :Browse function?
-      disable_netrw = false,
-      hijack_netrw = false,
-      hijack_cursor = false,
+  opts = {
+    -- needs to be disabled for GBrowse to work
+    -- alternative: could create own :Browse function?
+    disable_netrw = false,
+    hijack_netrw = false,
+    hijack_cursor = false,
+    update_cwd = true,
+    diagnostics = {
+      enable = true,
+      icons = {
+        hint = "",
+        info = "",
+        warning = "",
+        error = "",
+      },
+    },
+    update_focused_file = {
+      enable = true,
       update_cwd = true,
-      diagnostics = {
-        enable = true,
-        icons = {
-          hint = "",
-          info = "",
-          warning = "",
-          error = "",
+      ignore_list = {},
+    },
+    system_open = {
+      cmd = nil,
+      args = {},
+    },
+    filters = {
+      dotfiles = false,
+      custom = {},
+    },
+    git = {
+      enable = true,
+      ignore = true,
+      timeout = 500,
+    },
+    view = {
+      width = 30,
+      hide_root_folder = false,
+      side = "left",
+      number = false,
+      relativenumber = false,
+    },
+    trash = {
+      cmd = "trash",
+      require_confirm = true,
+    },
+    actions = {
+      open_file = {
+        quit_on_open = true,
+        window_picker = {
+          enable = false,
         },
       },
-      update_focused_file = {
-        enable = true,
-        update_cwd = true,
-        ignore_list = {},
-      },
-      system_open = {
-        cmd = nil,
-        args = {},
-      },
-      filters = {
-        dotfiles = false,
-        custom = {},
-      },
-      git = {
-        enable = true,
-        ignore = true,
-        timeout = 500,
-      },
-      view = {
-        width = 30,
-        hide_root_folder = false,
-        side = "left",
-        mappings = {
-          custom_only = false,
-          list = {
-            {
-              key = { "l", "<CR>", "o" },
-              cb = tree_cb("edit"),
-            },
-            {
-              key = "h",
-              cb = tree_cb("close_node"),
-            },
-            {
-              key = "v",
-              cb = tree_cb("vsplit"),
-            },
+    },
+    renderer = {
+      icons = {
+        glyphs = {
+          default = "",
+          symlink = "",
+          git = {
+            unstaged = "",
+            staged = "S",
+            unmerged = "",
+            renamed = "➜",
+            deleted = "",
+            untracked = "U",
+            ignored = "◌",
           },
-        },
-        number = false,
-        relativenumber = false,
-      },
-      trash = {
-        cmd = "trash",
-        require_confirm = true,
-      },
-      actions = {
-        open_file = {
-          quit_on_open = true,
-          window_picker = {
-            enable = false,
+          folder = {
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
           },
         },
       },
-      renderer = {
-        icons = {
-          glyphs = {
-            default = "",
-            symlink = "",
-            git = {
-              unstaged = "",
-              staged = "S",
-              unmerged = "",
-              renamed = "➜",
-              deleted = "",
-              untracked = "U",
-              ignored = "◌",
-            },
-            folder = {
-              default = "",
-              open = "",
-              empty = "",
-              empty_open = "",
-              symlink = "",
-            },
-          },
-        },
-      },
-      --  unknown options as of 22.05
-      --
-      --  update_to_buf_dir = {
-      --    enable = true,
-      --    auto_open = true,
-      --  },
-      --  auto_resize = true,
-      --  git_hl = 1,
-      --  root_folder_modifier = ":t",
-    }
-
-    vim.api.nvim_create_autocmd("BufEnter", {
-      nested = true,
-      callback = function()
-        if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-          vim.cmd("quit")
-        end
-      end,
-    })
-
-    nvim_tree.setup(config)
-  end,
+    },
+    --  unknown options as of 22.05
+    --
+    --  update_to_buf_dir = {
+    --    enable = true,
+    --    auto_open = true,
+    --  },
+    --  auto_resize = true,
+    --  git_hl = 1,
+    --  root_folder_modifier = ":t",
+  },
 }

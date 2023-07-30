@@ -60,7 +60,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = "auto",
+      theme = "tokyonight",
       component_separators = {
         left = "",
         right = "",

@@ -16,6 +16,10 @@ local keymap = vim.api.nvim_set_keymap
 -- keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "S-Right", ":cnext<CR>", opts)
 keymap("n", "S-Left", ":cprev<CR>", opts)
+keymap("n", "<C-h>", ":lua require('harpoon.ui').nav_file(1)<CR>", opts)
+keymap("n", "<C-j>", ":lua require('harpoon.ui').nav_file(2)<CR>", opts)
+keymap("n", "<C-k>", ":lua require('harpoon.ui').nav_file(3)<CR>", opts)
+keymap("n", "<C-l>", ":lua require('harpoon.ui').nav_file(4)<CR>", opts)
 -- keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
@@ -25,8 +29,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<S-l>", ":lua require('harpoon.ui').nav_next()<CR>", opts) -- was :bnext
+keymap("n", "<S-h>", ":lua require('harpoon.ui').nav_prev()<CR>", opts) -- was :bprev
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)

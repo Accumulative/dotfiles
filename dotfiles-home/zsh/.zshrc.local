@@ -1,1 +1,13 @@
 # Home config
+
+export ANDROID_SDK_ROOT=/home/kieran/Android/Sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export OPENAI_API_KEY=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
+
+M2_HOME='/opt/apache-maven-3.6.3'
+export PATH=$M2_HOME/bin:$PATH
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+export PATH=$HOME/.local/share/solana/install/active_release/bin:$PATH
+export PATH=/home/kieran/.ebcli-virtual-env/executables:$PATH
+
+export GOPATH=~/.go

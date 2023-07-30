@@ -123,6 +123,7 @@ alias oldvim="vim"
 alias gl="git log --pretty=oneline"
 alias his="history 1000 | grep"
 alias barrier="flatpak run com.github.debauchee.barrier"
+alias pacman-dump="pacman -Qqen > ~/.dotfiles/pkglist.txt"
 
 # kubenetes alias
 alias kclear="k get pods | grep -E 'Error|Completed' | cut -d ' ' -f 1 | xargs kubectl delete pod"
@@ -214,6 +215,12 @@ else
     print "404: ~/.zshrc.local not found."
 fi
 
+if [ -f ~/.zshrc.work ]; then
+    source ~/.zshrc.work
+else
+    print "404: ~/.zshrc.work not found."
+fi
+
 function dnamespace() {
   NAMESPACE=your-rogue-namespace
   kubectl proxy &
@@ -221,3 +228,8 @@ function dnamespace() {
   curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$NAMESPACE/finalize
 }
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/kieran/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kieran/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/kieran/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kieran/google-cloud-sdk/completion.zsh.inc'; fi

@@ -82,9 +82,10 @@ local v_opts = {
 }
 
 local mappings = {
-  ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+  ["a"] = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Harpoon UI" },
   ["b"] = {
-    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>",
+    --"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
   ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
@@ -197,10 +198,12 @@ local mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
   t = {
-    name = "Terminal/Test",
-    a = { "<cmd>:TestNearest<cr>", "Test Nearest" },
-    b = { "<cmd>:TestLast<cr>", "Test Last" },
-    c = { "<cmd>:TestFile<cr>", "Test File" },
+    name = "Terminal/Test/Template",
+    a = { "<cmd>TestNearest<cr>", "Test Nearest" },
+    b = { "<cmd>TestLast<cr>", "Test Last" },
+    c = { "<cmd>TestFile<cr>", "Test File" },
+    e = { "<cmd>Telescope find_template<cr>", "Edit template" },
+    r = { "<cmd>Telescope find_template type=insert<cr>", "Insert template" },
     n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
     u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
     t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
@@ -216,10 +219,12 @@ local mappings = {
   d = {
     name = "Debugging",
     c = { '<cmd>lua require"dap".continue()<CR>', "Continue" },
-    s = { '<cmd>lua require"dap".step_over()<CR>', "Step over" },
+    n = { '<cmd>lua require"dap".step_over()<CR>', "Step over" },
     i = { '<cmd>lua require"dap".step_into()<CR>', "Step into" },
     o = { '<cmd>lua require"dap".step_out()<CR>', "Step out" },
     p = { '<cmd>lua require"dap".toggle_breakpoint()<CR>', "Breakpoint" },
+    a = { '<cmd>lua require"dapui".open({})<CR>', "Open UI" },
+    s = { '<cmd>lua require"dapui".close({})<CR>', "Close UI" },
   },
   v = {
     name = "Vim",

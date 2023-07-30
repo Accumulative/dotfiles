@@ -1,11 +1,19 @@
 return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
   "nvim-tree/nvim-web-devicons",
-  "moll/vim-bbye",
+  { "norcalli/nvim-colorizer.lua", config = true },
   {
     "junegunn/goyo.vim",
     config = function()
       vim.g.goyo_linenr = 1
+    end,
+  },
+  {
+    "glepnir/template.nvim",
+    config = function()
+      require("template").setup({
+        temp_dir = "~/.dotfiles/nvim/templates/",
+      })
     end,
   },
   "christoomey/vim-tmux-navigator",
@@ -34,7 +42,7 @@ return {
         suggestion = {
           auto_trigger = true,
           keymap = {
-            accept = "<C-J>",
+            accept = "<Tab>",
             prev = "<M-[>",
             next = "<M-]>",
             dismiss = "<C-]>",
@@ -43,47 +51,32 @@ return {
       })
     end,
   },
+  {
+    "ThePrimeagen/harpoon",
+  },
   -- Colorschemes
   -- "lunarvim/colorschemes", -- A bunch of colorschemes you can try out
   {
-    "lunarvim/darkplus.nvim",
-    lazy = true,
-  },
-  {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
-  },
-  {
-    "luisiacc/gruvbox-baby",
-    lazy = true,
-  },
-  {
-    "navarasu/onedark.nvim",
-    lazy = true,
-  },
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = true,
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = true,
-  },
-  {
-    "tomasiser/vim-code-dark",
+    "folke/tokyonight.nvim",
+    opts = {
+      style = "night",
+      transparent = false,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
     config = function()
       vim.cmd([[
         set background=dark
-        colorscheme codedark
+        colorscheme tokyonight-night
       ]])
     end,
   },
-  {
-    "xiyaowong/transparent.nvim",
-    config = {
-      enable = false,
-    },
-  },
+  --[[ { ]]
+  --[[   "xiyaowong/transparent.nvim", ]]
+  --[[   config = true, ]]
+  --[[ }, ]]
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
@@ -128,5 +121,4 @@ return {
   "ThePrimeagen/refactoring.nvim",
   "tpope/vim-dadbod",
   "kristijanhusak/vim-dadbod-ui",
-  "puremourning/vimspector",
 }

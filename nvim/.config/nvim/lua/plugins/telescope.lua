@@ -101,5 +101,6 @@ return {
 
     telescope.load_extension("git_worktree")
     telescope.load_extension("projects")
+    telescope.load_extension("find_template")
   end,
 }
