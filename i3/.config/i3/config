@@ -252,7 +252,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym Print --release exec gnome-screenshot -a
 
 bindsym $mod+shift+x exec i3lock
-exec_always feh --bg-scale /home/kieran/Downloads/2109.jpg
+exec_always feh --bg-scale /home/kieran/Pictures/Tokyonight.jpg
 exec fcitx
 exec_always pkill compton; compton -f --config /home/kieran/.config/compton.conf
 exec start-pulseaudio-x11

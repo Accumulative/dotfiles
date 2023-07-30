@@ -54,6 +54,7 @@ M.lsp_servers = {
   "gopls",
   "jsonls",
   "tsserver",
+  "clangd",
   "lua_ls",
   "cssls",
   "dockerls",

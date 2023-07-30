@@ -1,6 +1,7 @@
 return {
   "tpope/vim-projectionist",
   config = function()
+    -- typescript
     local extensions = { ".ts", ".js" }
     local config = {}
     for i, ex in pairs(extensions) do
@@ -19,6 +20,17 @@ return {
         type = "source",
       }
     end
+
+    -- c++
+    config["src/*.cpp"] = {
+      type = "source",
+      alternate = "src/{}.hpp",
+    }
+    config["src/*.hpp"] = {
+      type = "header",
+      alternate = "src/{}.cpp",
+    }
+
     vim.g.projectionist_heuristics = { ["*"] = config }
   end,
 }

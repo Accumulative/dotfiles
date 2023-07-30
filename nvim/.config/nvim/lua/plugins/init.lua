@@ -2,11 +2,18 @@ return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
   "nvim-tree/nvim-web-devicons",
   { "norcalli/nvim-colorizer.lua", config = true },
-  "moll/vim-bbye",
   {
     "junegunn/goyo.vim",
     config = function()
       vim.g.goyo_linenr = 1
+    end,
+  },
+  {
+    "glepnir/template.nvim",
+    config = function()
+      require("template").setup({
+        temp_dir = "~/.dotfiles/nvim/templates/",
+      })
     end,
   },
   "christoomey/vim-tmux-navigator",
@@ -35,7 +42,7 @@ return {
         suggestion = {
           auto_trigger = true,
           keymap = {
-            accept = "<C-J>",
+            accept = "<Tab>",
             prev = "<M-[>",
             next = "<M-]>",
             dismiss = "<C-]>",
@@ -44,12 +51,20 @@ return {
       })
     end,
   },
+  {
+    "ThePrimeagen/harpoon",
+  },
   -- Colorschemes
   -- "lunarvim/colorschemes", -- A bunch of colorschemes you can try out
   {
     "folke/tokyonight.nvim",
-    setup = {
+    opts = {
       style = "night",
+      transparent = false,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
     config = function()
       vim.cmd([[
@@ -58,10 +73,10 @@ return {
       ]])
     end,
   },
-  {
-    "xiyaowong/transparent.nvim",
-    config = true,
-  },
+  --[[ { ]]
+  --[[   "xiyaowong/transparent.nvim", ]]
+  --[[   config = true, ]]
+  --[[ }, ]]
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
@@ -106,5 +121,4 @@ return {
   "ThePrimeagen/refactoring.nvim",
   "tpope/vim-dadbod",
   "kristijanhusak/vim-dadbod-ui",
-  --[[ "puremourning/vimspector", ]]
 }
