@@ -1,5 +1,6 @@
 return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+  { "folke/which-key.nvim", opts = {} },
   "nvim-tree/nvim-web-devicons",
   { "norcalli/nvim-colorizer.lua", config = true },
   {
@@ -77,13 +78,7 @@ return {
   --[[   "xiyaowong/transparent.nvim", ]]
   --[[   config = true, ]]
   --[[ }, ]]
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-  }, -- LSP
   "rafamadriz/friendly-snippets",
-  "tamago324/nlsp-settings.nvim", -- language server settings defined in json for
-  "JoosepAlviste/nvim-ts-context-commentstring", -- Git
   "tpope/vim-fugitive", -- git utils
   {
     "tpope/vim-dispatch",
@@ -95,6 +90,7 @@ return {
   "tpope/vim-rhubarb", -- :GBrowse
   "tpope/vim-repeat", -- make . stronger
   "tpope/vim-abolish", -- better searching
+  "tpope/vim-sleuth", -- detect indent settings
   "godlygeek/tabular", -- helps align stuff
   "mbbill/undotree",
   {

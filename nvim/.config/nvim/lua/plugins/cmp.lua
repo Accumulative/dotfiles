@@ -1,72 +1,62 @@
-local settings = require("user.settings")
 return {
-  "VonHeikemen/lsp-zero.nvim",
-  branch = "v1.x",
+  -- Autocompletion
+  "hrsh7th/nvim-cmp",
   dependencies = {
-    -- LSP Support
-    {
-      "neovim/nvim-lspconfig",
-      -- opts = {
-      --   setup = {
-      --     clangd = function(_, opts)
-      --       opts.capabilities.offsetEncoding = { "utf-16" }
-      --     end,
-      --   },
-      -- },
-    }, -- Required
-    { "williamboman/mason.nvim" }, -- Optional
-    { "williamboman/mason-lspconfig.nvim" }, -- Optional
+    -- Snippet Engine & its associated nvim-cmp source
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
 
-    -- Autocompletion
-    { "hrsh7th/nvim-cmp" }, -- Required
-    { "hrsh7th/cmp-nvim-lsp" }, -- Required
-    { "hrsh7th/cmp-buffer" }, -- Optional
-    { "hrsh7th/cmp-path" }, -- Optional
-    { "saadparwaiz1/cmp_luasnip" }, -- Optional
-    { "hrsh7th/cmp-nvim-lua" }, -- Optional
+    -- Adds LSP completion capabilities
+    "hrsh7th/cmp-nvim-lsp",
 
-    --[[ -- Signature ]]
-    { "https://github.com/ray-x/lsp_signature.nvim" },
-
-    -- Snippets { 'L3MON4D3/LuaSnip' }, -- Required
-    { "rafamadriz/friendly-snippets" }, -- Optional
+    -- Adds a number of user-friendly snippets
+    "rafamadriz/friendly-snippets",
   },
   config = function()
-    local lsp = require("lsp-zero")
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+    require("luasnip.loaders.from_vscode").lazy_load()
+    luasnip.config.setup({})
 
-    lsp.preset({
-      name = "recommended",
-      set_lsp_keymaps = { preserve_mappings = false },
-    })
-    local cmp_mapping = lsp.defaults.cmp_mappings()
-    cmp_mapping["<Tab>"] = nil
-    lsp.setup_nvim_cmp({
-      mapping = cmp_mapping,
-    })
-
-    local lsp_signature_config = {
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      handler_opts = {
-        border = "rounded",
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
       },
-    }
-
-    if settings.signature_provider == "cmp" then
-      -- virtual text signature
-      require("lsp_signature").setup(lsp_signature_config)
-    end
-
-    lsp.ensure_installed(settings.lsp_servers)
-
-    -- (Optional) Configure lua language server for neovim
-    lsp.nvim_workspace()
-
-    lsp.setup()
-
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.offsetEncoding = { "utf-16" }
-    require("lspconfig").clangd.setup({
-      capabilities = capabilities,
+      mapping = cmp.mapping.preset.insert({
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping.complete({}),
+        ["<CR>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_locally_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+      }),
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      },
     })
   end,
 }

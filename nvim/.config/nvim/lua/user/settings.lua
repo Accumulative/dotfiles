@@ -51,20 +51,28 @@ M.treesitter_ensure_installed = {
 }
 
 M.lsp_servers = {
-  "gopls",
-  "jsonls",
-  "tsserver",
-  "clangd",
-  "lua_ls",
-  "cssls",
-  "dockerls",
-  "html",
-  "pyright",
-  "solc",
-  "tailwindcss",
-  "yamlls",
-  "rust_analyzer",
-  "terraformls",
+  gopls = {},
+  jsonls = {},
+  tsserver = {
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    cmd = { "typescript-language-server", "--stdio" },
+  },
+  clangd = {},
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+  cssls = {},
+  dockerls = {},
+  html = {},
+  pyright = {},
+  solc = {},
+  tailwindcss = {},
+  yamlls = {},
+  rust_analyzer = {},
+  terraformls = {},
 }
 
 M.dashboard_ascii = {
