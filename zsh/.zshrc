@@ -229,7 +229,14 @@ function dnamespace() {
 }
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/kieran/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kieran/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/kieran/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kieran/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/kieran/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kieran/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/kieran/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kieran/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# bun completions
+[ -s "/home/kieran/.bun/_bun" ] && source "/home/kieran/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

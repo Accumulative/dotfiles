@@ -67,6 +67,15 @@ ruled.client.connect_signal("request::rules", function()
   })
 
   ruled.client.append_rule({
+    rule = { class = "chromium" },
+    properties = { tag = " ", switch_to_tags = true },
+  })
+
+  ruled.client.append_rule({
+    rule = { class = "code" },
+    properties = { tag = " ", switch_to_tags = true },
+  })
+  ruled.client.append_rule({
     rule = { class = "Alacritty" },
     properties = { tag = " ", switch_to_tags = true },
   })
@@ -86,6 +95,10 @@ ruled.client.connect_signal("request::rules", function()
     properties = { tag = " ", switch_to_tags = true },
   })
 
+  ruled.client.append_rule({
+    rule = { class = "DBeaver" },
+    properties = { tag = " ", switch_to_tags = true },
+  })
   ruled.client.append_rule({
     rule = { class = "KeePass2" },
     properties = { tag = " ", switch_to_tags = true },
