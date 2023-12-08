@@ -1,12 +1,6 @@
---[[
-
-     Awesome WM configuration template
-     github.com/lcpz
-
---]] -- {{{ Required libraries
--- If LuaRocks is installed, make sure that packages installed through it are
--- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
+
+package.path = package.path .. ';/home/kieran/.config/awesome/awesome-copycats/?/init.lua;/home/kieran/.config/awesome/awesome-copycats/?.lua'
 
 local gears = require("gears")
 local awful = require("awful")
@@ -14,9 +8,9 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local lain = require("awesome-copycats/lain")
+local lain = require("lain")
 -- local menubar       = require("menubar")
-local freedesktop = require("awesome-copycats/freedesktop")
+local freedesktop = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -971,5 +965,5 @@ tag.connect_signal("property::selected", backham)
 
 -- }}}
 
-require("rules")
-require("autostart")
+-- require("rules")
+-- require("autostart")
