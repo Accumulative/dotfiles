@@ -1,6 +1,7 @@
 pcall(require, "luarocks.loader")
 
-package.path = package.path .. ';/home/kieran/.config/awesome/awesome-copycats/?/init.lua;/home/kieran/.config/awesome/awesome-copycats/?.lua'
+local submodule_dir = string.format("%s/.config/awesome/awesome-copycats", os.getenv("HOME"))
+package.path = package.path .. ';' .. submodule_dir .. '/?/init.lua;' .. submodule_dir .. '/?.lua'
 
 local gears = require("gears")
 local awful = require("awful")
@@ -8,9 +9,9 @@ require("awful.autofocus")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local lain = require("lain")
+local lain = require("awesome-copycats/lain")
 -- local menubar       = require("menubar")
-local freedesktop = require("freedesktop")
+local freedesktop = require("awesome-copycats/freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -166,7 +167,7 @@ end), awful.button({}, 5, function()
     awful.client.focus.byidx(-1)
 end))
 
-beautiful.init(string.format("%s/.config/awesome/awesome-copycats/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+beautiful.init(string.format("%s/themes/%s/theme.lua", submodule_dir, chosen_theme))
 
 -- }}}
 

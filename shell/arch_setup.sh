@@ -58,3 +58,7 @@ sudo visudo -f kieran
 # awesome wm
 git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
 mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
+
+# clamav
+sudo systemctl enable --now clamav-freshclam.service
+sudo systemctl enable --now clamav-daemon.service
