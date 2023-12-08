@@ -1,3 +1,6 @@
 [submodule "dotfiles-work"]
 	path = dotfiles-work
 	url = git@github.com:Accumulative/dotfiles-work.git
+[submodule "awesome/.config/awesome/awesome-copycats"]
+	path = awesome/.config/awesome/awesome-copycats
+	url = https://github.com/lcpz/awesome-copycats

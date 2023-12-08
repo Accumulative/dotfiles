@@ -14,7 +14,6 @@ tar_from_url() {
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-sudo systemctl enable --now bluetooth
 
 ### JIRA CLI
 tar_from_url https://github.com/ankitpokhrel/jira-cli/releases/download/v1.3.0/jira_1.3.0_linux_x86_64.tar.gz
@@ -34,7 +33,28 @@ sudo cp ./google-cloud-sdk/bin/gsutil /usr/local/bin/gsutil
 rm -rf ./google-cloud-sdk
 
 # mullvad vpn
-pikaur -S mullvad-vpn
-pikaur -S i3lock-color
+yay mullvad-vpn
 
+# docker
 sudo systemctl enable --now docker
+user mod -aG docker $(whoami)
+
+# bluetooth
+sudo systemctl enable --now bluetooth
+
+# rofi themes
+git clone https://github.com/lr-tech/rofi-themes-collection.git
+cd rofi-themes-collection
+mkdir -p ~/.local/share/rofi/themes/
+cp themes/* ~/.local/share/rofi/themes/
+cd ..
+rm -rf rofi-themes-collection
+
+# sudo timeouts
+cd /etc/sudoers.d
+sudo visudo -f kieran
+# "Defaults timestamp_timeout=60"
+
+# awesome wm
+git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
+mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
