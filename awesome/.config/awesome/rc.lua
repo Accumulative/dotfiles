@@ -966,5 +966,5 @@ tag.connect_signal("property::selected", backham)
 
 -- }}}
 
--- require("rules")
+require("rules")
 -- require("autostart")

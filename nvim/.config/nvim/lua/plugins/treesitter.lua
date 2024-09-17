@@ -24,9 +24,6 @@ return {
       ensure_installed = settings.treesitter_ensure_installed,
       -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
       auto_install = true,
-      context_commentstring = {
-        enable = true,
-      },
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {
@@ -75,10 +72,10 @@ return {
         swap = {
           enable = true,
           swap_next = {
-            ["<leader>a"] = "@parameter.inner",
+            ["<leader>b"] = "@parameter.inner",
           },
           swap_previous = {
-            ["<leader>A"] = "@parameter.inner",
+            ["<leader>B"] = "@parameter.inner",
           },
         },
       },

@@ -4,6 +4,7 @@ return {
     "mfussenegger/nvim-dap-python",
     "theHamsta/nvim-dap-virtual-text",
     "rcarriga/nvim-dap-ui",
+    "nvim-neotest/nvim-nio",
     "mortepau/codicons.nvim",
   },
   config = function()

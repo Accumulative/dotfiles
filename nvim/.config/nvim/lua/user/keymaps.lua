@@ -7,13 +7,13 @@ vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 
 -- harpoon
-vim.keymap.set("n", "<leader>a", ":lua require('harpoon.ui').add_file()<CR>", { desc = "Add harpoon" })
+vim.keymap.set("n", "<leader>a", ":lua require('harpoon.mark').add_file()<CR>", { desc = "Add harpoon" })
 vim.keymap.set("n", "<leader><space>", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { desc = "Show harpoon" })
-vim.keymap.set("n", "<C-h>", ":lua require('harpoon.ui').nav_file(1)<CR>", { desc = "Select harpoon 1", silent = true })
-vim.keymap.set("n", "<C-j>", ":lua require('harpoon.ui').nav_file(2)<CR>", { desc = "Select harpoon 2", silent = true })
-vim.keymap.set("n", "<C-k>", ":lua require('harpoon.ui').nav_file(3)<CR>", { desc = "Select harpoon 3", silent = true })
-vim.keymap.set("n", "<C-l>", ":lua require('harpoon.ui').nav_file(4)<CR>", { desc = "Select harpoon 4", silent = true })
-vim.keymap.set("n", "<S-l>", ":lua require('harpoon.ui').nav_next()<CR>", { desc = "Next harpoon" }) -- was :bnext
+vim.keymap.set("n", "<C-j>", ":lua require('harpoon.ui').nav_file(1)<CR>", { desc = "Select harpoon 1", silent = true })
+vim.keymap.set("n", "<C-k>", ":lua require('harpoon.ui').nav_file(2)<CR>", { desc = "Select harpoon 2", silent = true })
+vim.keymap.set("n", "<C-l>", ":lua require('harpoon.ui').nav_file(3)<CR>", { desc = "Select harpoon 3", silent = true })
+vim.keymap.set("n", "<C-;>", ":lua require('harpoon.ui').nav_file(4)<CR>", { desc = "Select harpoon 4", silent = true })
+vim.keymap.set("n", "<S-l>", ":lua require('harpoon.ui').nav_next()<CR>", { desc = "Next harpoon" })     -- was :bnext
 vim.keymap.set("n", "<S-h>", ":lua require('harpoon.ui').nav_prev()<CR>", { desc = "Previous harpoon" }) -- was :bprev
 
 -- resize

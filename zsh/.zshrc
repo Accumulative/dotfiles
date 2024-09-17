@@ -74,6 +74,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
+  git-flow-completion
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -233,3 +234,13 @@ if [ -f '/home/kieran/google-cloud-sdk/path.zsh.inc' ]; then . '/home/kieran/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/kieran/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/kieran/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pnpm
+export PNPM_HOME="/home/kieran/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export BROWSER="/usr/bin/firefox"

@@ -12,9 +12,7 @@ for _, sign in ipairs(signs) do
   vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 end
 
-local format_filetypes = "*"
-
-vim.api.nvim_create_autocmd(string.format("BufWritePre %s", format_filetypes), {
+vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
     vim.lsp.buf.format({
       timeout_ms = 1000,
@@ -28,7 +26,7 @@ vim.api.nvim_create_autocmd(string.format("BufWritePre %s", format_filetypes), {
 })
 
 if settings.diagnostics_on_hover == true then
-  vim.api.nvim_create_autocmd("CursorHold *", {
+  vim.api.nvim_create_autocmd("CursorHold", {
     callback = function()
       vim.diagnostic.open_float({ focusable = settings.focusable_popups })
     end,
@@ -47,7 +45,7 @@ end
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, settings.diagnostic_display)
 
 if settings.signature_on_hover == true then
-  vim.api.nvim_create_autocmd("CursorHold *", {
+  vim.api.nvim_create_autocmd("CursorHold", {
     callback = function()
       vim.lsp.buf.hover()
     end,

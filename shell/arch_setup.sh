@@ -62,3 +62,6 @@ mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 # clamav
 sudo systemctl enable --now clamav-freshclam.service
 sudo systemctl enable --now clamav-daemon.service
+
+
+git config --global --add alias.permission-reset '!git diff -p -R --no-ext-diff --no-color --diff-filter=M | grep -E "^(diff|(old|new) mode)" --color=never | git apply'

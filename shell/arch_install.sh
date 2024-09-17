@@ -79,7 +79,7 @@ nmcli device wifi list
 nmcli device wifi connect elecom-0d10d3 password 12345678
 
 # awesome
-sudo pacman -S --needed base-devel git
+sudo pacman -S --needed base-devel git cmake
 git clone https://aur.archlinux.org/awesome-git.git
 cd awesome-git
 makepkg -si

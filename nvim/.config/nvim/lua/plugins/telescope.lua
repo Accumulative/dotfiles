@@ -8,7 +8,7 @@ return {
     telescope.setup({
       defaults = {
 
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = { ".venv", "__pycache__", "node_modules", ".git" },
         color_devicons = true,
         prompt_prefix = " ",
         selection_caret = " ",
